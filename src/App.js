@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { fetchData } from './api';
-import Cards from './components/Cards/Cards';
-import Chart from './components/Chart/Chart';
-import CountryPicker from './components/CountryPicker/CountryPicker';
+import React from 'react';
+
+import { Cards, CountryPicker, Chart } from './components';
+import { fetchData } from './api/';
+import styles from './App.module.css';
+
 
 function App() {
   const [data, setData] = useState({});
@@ -18,14 +20,16 @@ function App() {
 
   const handleCountryChange = async (country) => {
     const data = await fetchData(country);
-    setCountry(data);
+    setCountry(country);
+    setData(data);
   }
 
-  return ( 
-    <div>
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.image}> Covid - 19</h1>
       <Cards data={data} />
       <CountryPicker handleCountryChange={handleCountryChange} />
-      <Chart data={data} country={country} /> 
+      <Chart data={data} country={country} />
     </div>
   );
 }

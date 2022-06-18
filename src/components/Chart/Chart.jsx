@@ -38,7 +38,6 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
       />
     ) : null
   );
-
   const lineChart = (
     dailyData[0] ? (
       <Line
